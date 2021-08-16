@@ -1,4 +1,3 @@
-# NRES
 Neural Residual Echo Suppressor
 =========================
 
@@ -59,13 +58,13 @@ Performance
 Microphone input with double-talk (d)
 ![predicitons](matlab/NRES_Fd2.png "Microphone input with double-talk")
 
-AEC residual (e)
+AEC residual (e) with non-linear recho and double-talk
 ![predicitons](matlab/NRES_Fe2.png "Microphone residual")
 
 Enhanced output (z)
 ![predicitons](matlab/NRES_Fz2.png "Enhanced output")
 
-Near-end signal (s)
+Near-end signal/groundtruth (s)
 ![predicitons](matlab/NRES_Fs.png "Near-end signal")
 
 
