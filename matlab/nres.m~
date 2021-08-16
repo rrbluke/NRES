@@ -1,0 +1,46 @@
+clear all
+close all
+clc
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+load('../predictions/nres.mat');
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+fs = 16e3;
+wlen = 1024;
+shift = 512;
+[nbin, nfram] = size(Fs);
+tvect = (0:nfram-1)*shift/fs;
+
+gain = 10;
+Fe1 = Fe1*gain;
+Fz1 = Fz1*gain;
+Fe2 = Fe2*gain;
+Fz2 = Fz2*gain;
+Fs = Fs*gain;
+
+Fe1 = Fd-Fy;
+Fz1 = Fe1.*p_erle;
+
+Fe2 = Fd+Fs-Fy;
+Fz2 = Fe2.*p_sdr;
+
+e1 = mistft_hanning(Fe1);
+z1 = mistft_hanning(Fz1);
+e2 = mistft_hanning(Fe2);
+z2 = mistft_hanning(Fz2);
+s = mistft_hanning(Fs);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+multiplot(Fe1, Fz1, p_erle, Fe2, Fz2, Fs, p_sdr)
+wavplot(e1, z1, e2, z2, s)
+
